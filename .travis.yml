@@ -68,3 +68,16 @@ before_install:
   # - sudo m-a -i auto-install openafs
   # - sudo modprobe openafs
 
+
+script:  
+#####################################################################################################################################
+  # Set up openafs configurations
+  - echo cs.stanford.edu | sudo tee /etc/openafs/ThisCell
+  - sudo wget --no-check-certificate --output-document=/etc/openafs/CellServDB http://grand.central.org/dl/cellservdb/CellServDB
+
+  - sudo service openafs-client force-start
+
+  - cd /afs
+  - ls
+  - cd cs.stanford.edu
+  - ls
